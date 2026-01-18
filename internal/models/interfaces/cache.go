@@ -1,12 +1,12 @@
 package interfaces
 
-type Cache[K comparable, V any] interface {
-	Get(key K) (V, bool)
-	Set(Key K, value V)
-	Delete(key K)
-	Has(key K) bool
-	Clear()
-	Size() int
-	GetAll() map[K]V
-	Keys() []K
+type Cache interface {
+	Add(key interface{}, value interface{})
+	Get(key interface{}) (interface{}, bool)
+	Remove(key interface{}) bool
+	GetAll() interface{}
+	GetAllAddresses() []string
+	HasAny() bool
+	Count() int
+	ForEach(fn func(key interface{}, value interface{}))
 }
