@@ -48,5 +48,8 @@ func (p *Peer) StartListening() error {
 }
 
 func (p *Peer) handleIncomingConnection(conn net.Conn) {
-
+	// logic for key exchanging
+	// creating connection object
+	// go readLoop
+	// go writeLoop
 }
