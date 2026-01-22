@@ -48,6 +48,22 @@ func (p *Peer) StartListening() error {
 }
 
 func (p *Peer) handleIncomingConnection(conn net.Conn) {
+	remoteAddr := conn.RemoteAddr().String()
+	log.Printf("New incoming connection from: %s", remoteAddr)
+
+	remotePub, err := p.exchangeKeys(conn, false)
+	if err != nil {
+
+	}
+
+	c := &models.Connection{
+		Conn:            conn,
+		RemotePublicKey: remotePub,
+		SendChan:        make(chan []byte, 10),
+		CloseChan:       make(chan struct{}),
+	}
+	p.cacheConn.Add(remoteAddr, c)
+
 	// logic for key exchanging
 	// creating connection object
 	// go readLoop
