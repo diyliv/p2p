@@ -1,0 +1,2 @@
+# Secure P2P Chat with RSA Encryption
+A lightweight peer-to-peer chat application written in Go, featuring end-to-end RSA encryption and support for multiple concurrent connections. Each peer acts as a both a server (listening for incoming connections) and a client (able to connect to other peers). 
