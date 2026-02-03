@@ -60,6 +60,21 @@ func (c *STUNClient) receiveResponse(conn net.Conn) (net.IP, int, error) {
 	return ip, port, nil
 }
 
+func (c *STUNClient) discoverPublicAddress() (net.IP, int, error) {
+	servers := c.defaultSTUNServers()
+	var lastErr error
+	for _, server := range servers {
+		client := NewSTUNClient(server)
+		ip, port, err := client.GetPublicAddress()
+		if err == nil {
+			return ip, port, nil
+		}
+		lastErr = err
+		log.Printf("STUN server %s failed: %v", server, err)
+	}
+	return nil, 0, fmt.Errorf("all STUN servers failed: %w", lastErr)
+}
+
 func (c *STUNClient) defaultSTUNServers() []string {
 	return []string{
 		"stun.l.google.com:19302",
