@@ -16,3 +16,8 @@ type UPnPPortForwarder struct {
 func NewUPnPPortForwarder(port int) (*UPnPPortForwarder, error) {
 	return nil, nil
 }
+
+func (u *UPnPPortForwarder) AddMapping()
+func (u *UPnPPortForwarder) Removemapping()
+func (u *UPnPPortForwarder) GetExternalIP()
+func (u *UPnPPortForwarder) GetInternalIP()
