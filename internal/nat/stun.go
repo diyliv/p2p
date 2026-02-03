@@ -59,3 +59,13 @@ func (c *STUNClient) receiveResponse(conn net.Conn) (net.IP, int, error) {
 	log.Printf("STUN public address: %s:%d", ip.String(), port)
 	return ip, port, nil
 }
+
+func (c *STUNClient) defaultSTUNServers() []string {
+	return []string{
+		"stun.l.google.com:19302",
+		"stun1.l.google.com:19302",
+		"stun2.l.google.com:19302",
+		"stun3.l.google.com:19302",
+		"stun4.l.google.com:19302",
+	}
+}
